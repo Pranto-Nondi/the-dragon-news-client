@@ -6,7 +6,7 @@ const NewsCards = ({ news }) => {
     const { _id, rating, total_view, title, author, image_url, details } = news
     return (
         <>
-            <Card className="">
+            <Card className=" mb-4 ">
                 <Card.Header>Featured</Card.Header>
                 <Card.Body>
                     <Card.Title>{title}</Card.Title>

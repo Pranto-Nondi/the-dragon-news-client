@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import RestLeftNavPart from './RestLeftNavPart';
 
 const LeftNav = () => {
     const [categories, setCategories] = useState([])
@@ -11,13 +12,14 @@ const LeftNav = () => {
             .catch(error => console.log(error))
     }, [])
     return (
-        <div>
+        <>
             <h3 className='mt-4'>All Category</h3>
             <div className='ps-4'>
                 {
                     categories.map(category => <p key={category.id}><Link className='text-decoration-none text-black' to={`categories/${category.id}`} >{category.name}</Link></p>)
                 }</div>
-        </div>
+            <RestLeftNavPart></RestLeftNavPart>
+        </>
     );
 };
 
