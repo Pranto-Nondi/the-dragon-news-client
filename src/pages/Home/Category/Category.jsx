@@ -5,12 +5,11 @@ import NewsCards from '../NewsCards/NewsCards';
 
 const Category = () => {
     const { id } = useParams()
-    console.log(id)
     const categories = useLoaderData()
     return (
         <>
             <h3 className='mt-4'>Dragon News Home</h3>
-            {id && <h2>This Category News: {categories.length}</h2>}
+            {id>0 && <h2>This Category News: {categories.length}</h2>}
             {categories.map(news => <NewsCards key={news._id} news={news} ></NewsCards>)}
 
 
