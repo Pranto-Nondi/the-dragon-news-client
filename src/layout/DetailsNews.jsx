@@ -1,14 +1,13 @@
 import React from 'react';
-import Header from '../pages/Shared/Header/Header';
 import Footer from '../pages/Shared/Footer/Footer';
 import { Col, Container, Row } from 'react-bootstrap';
-import LeftNav from '../pages/Shared/LeftNav/LeftNav';
 import RightNav from '../pages/Shared/RightNav/RightNav';
 import { Outlet } from 'react-router-dom';
+import Heading from '../pages/Shared/Heading/Heading';
 const DetailsNews = () => {
     return (
         <div>
-            <Header></Header>
+           <Heading></Heading>
             <Container>
                 <Row>
                     <Col lg={9}>
