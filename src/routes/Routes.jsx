@@ -23,7 +23,7 @@ const router = createBrowserRouter([
             {
                 path: 'categories/:id',
                 element: <Category />,
-                loader: (({ params }) => fetch(`http://localhost:5000/categories/${params.id}`))
+                loader: ({ params }) => fetch(`http://localhost:5000/categories/${params.id}`)
 
             },
 
@@ -36,7 +36,7 @@ const router = createBrowserRouter([
             {
                 path: ':id',
                 element: <DetailsCard />,
-                loader: (({ params }) => fetch(`http://localhost:5000/news/${params.id}`))
+                loader: ({ params }) => fetch(`http://localhost:5000/news/${params.id}`)
 
             }
         ]
@@ -48,7 +48,7 @@ const router = createBrowserRouter([
             {
                 path: '/login',
                 element: <SignIn />
-            },
+            }
         ]
     },
     {
