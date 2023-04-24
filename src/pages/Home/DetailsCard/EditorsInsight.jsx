@@ -10,7 +10,7 @@ const EditorsInsight = () => {
 
                 <Col>
                     <Card>
-                        <Card.Img variant="top" src={first} />
+                        <Card.Img variant="top" src={first&&first} />
                         <Card.Body>
                             <Card.Title>21 The Most Stylish Wedding Guest Dresses For Spring</Card.Title>
                             <Card.Text>
@@ -21,7 +21,7 @@ const EditorsInsight = () => {
                 </Col>
                 <Col>
                     <Card>
-                        <Card.Img variant="top" src={second} />
+                        <Card.Img variant="top" src={second && second} />
                         <Card.Body>
                             <Card.Title> 21 The Most Stylish Wedding Guest Dresses For Spring</Card.Title>
                             <Card.Text>
@@ -32,7 +32,7 @@ const EditorsInsight = () => {
                 </Col>
                 <Col>
                     <Card>
-                        <Card.Img variant="top" src={third} />
+                        <Card.Img variant="top" src={third && third } />
                         <Card.Body>
                             <Card.Title> 21 The Most Stylish Wedding Guest Dresses For Spring</Card.Title>
                             <Card.Text>

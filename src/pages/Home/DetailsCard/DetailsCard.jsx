@@ -12,7 +12,7 @@ const DetailsCard = () => {
             <h3 className='mt-4'>Dragon News</h3>
             <Col>
                 <Card>
-                    <Card.Img variant="top" src={image_url && image_url } />
+                    <Card.Img variant="top" src={news.image_url && image_url } />
                     <Card.Body>
                         <Card.Title>{title}</Card.Title>
                         <Card.Text>

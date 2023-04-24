@@ -10,7 +10,7 @@ const RestLeftNavPart = () => {
 
                 <Col>
                     <Card>
-                        <Card.Img variant="top" src={first} />
+                        <Card.Img variant="top" src={first && first} />
                         <Card.Body>
                             <Card.Title>Bayern Slams Authorities Over Flight Delay to Club World Cup</Card.Title>
                             <Card.Text>
@@ -21,7 +21,7 @@ const RestLeftNavPart = () => {
                 </Col>
                 <Col>
                     <Card>
-                        <Card.Img variant="top" src={second} />
+                        <Card.Img variant="top" src={second && second} />
                         <Card.Body>
                             <Card.Title>Bayern Slams Authorities Over Flight Delay to Club World Cup</Card.Title>
                             <Card.Text>
@@ -32,7 +32,7 @@ const RestLeftNavPart = () => {
                 </Col>
                 <Col>
                     <Card>
-                        <Card.Img variant="top" src={third} />
+                        <Card.Img variant="top" src={third && third} />
                         <Card.Body>
                             <Card.Title>Bayern Slams Authorities Over Flight Delay to Club World Cup</Card.Title>
                             <Card.Text>
