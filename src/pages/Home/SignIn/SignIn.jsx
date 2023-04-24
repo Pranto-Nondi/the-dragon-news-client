@@ -2,7 +2,7 @@ import React, { useContext, useState } from 'react';
 import { Alert, Button, Form } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../../Provider/AuthProvider';
-
+import { toast } from 'react-toastify';
 
 const SignIn = () => {
     const [password, setPassword] = useState(null)
@@ -27,6 +27,7 @@ const SignIn = () => {
                 console.log(loggedUser)
                 e.target.reset()
                 setError('')
+                toast.success("Login SuccessFul");
             })
             .catch(error => {
                 console.log(error.message)
