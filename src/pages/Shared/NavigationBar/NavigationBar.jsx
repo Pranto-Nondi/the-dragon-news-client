@@ -47,20 +47,12 @@ const NavigationBar = () => {
                             }
 
                             {
-                                // !user ? <>
-                                //     <Link to="/login" ><Button variant="dark" size='md' >LogIn</Button></Link>
-
-                                // </> : !loading ? <>
-                                //     <p ><span style={{ fontSize: '1.5rem' }}>{user.displayName}&nbsp;&nbsp; </span></p>
-                                //     <Link ><Button variant="dark" size='md' >LogOut</Button></Link>
-                                // </> : <Spinner animation="border" variant="light" />
+                               
                                 user && !loading && <>
                                     <p ><span style={{ fontSize: '1.5rem' }}>{user.displayName}&nbsp;&nbsp; </span></p>
                                     <Link to='/register' ><Button onClick={handelLogOut} variant="dark" size='md' >LogOut</Button></Link>
                                 </>
-
                             }
-
                         </Nav>
                     </Navbar.Collapse>
                 </Container>
