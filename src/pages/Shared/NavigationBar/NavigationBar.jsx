@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { Button, Container, Nav, Navbar } from 'react-bootstrap';
+import { Button, Container, Nav, Navbar, Spinner } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { FaUserCircle } from 'react-icons/fa';
 import { AuthContext } from '../../../Provider/AuthProvider';
@@ -34,23 +34,25 @@ const NavigationBar = () => {
 
 
                             {
-                                !user && <>
+                                !user && !loading && <>
                                     <FaUserCircle style={{ fontSize: '2rem' }} ></FaUserCircle>
-                                    <Link to="/login" >&nbsp;&nbsp;<Button variant="dark" size='md' >LogIn</Button></Link>
-                                </>
-                            }
-                            {
-                                !user || loading && <>
-                                    <FaUserCircle style={{ fontSize: '2rem' }} ></FaUserCircle>
-                                    <Link to="/login" ><Button variant="dark" size='md' >LogIn</Button></Link>
+                                    <Link className='text-decoration-none' to="/login" >&nbsp;&nbsp;<Button variant="dark" size='md' >LogIn</Button></Link>
                                 </>
                             }
 
                             {
-                               
+                                !user || loading && <>
+
+                                    <Spinner animation="border" variant="light" />
+
+                                </>
+                            }
+
+                            {
+
                                 user && !loading && <>
                                     <p ><span style={{ fontSize: '1.5rem' }}>{user.displayName}&nbsp;&nbsp; </span></p>
-                                    <Link to='/register' ><Button onClick={handelLogOut} variant="dark" size='md' >LogOut</Button></Link>
+                                    <Link to='/login' ><Button onClick={handelLogOut} variant="dark" size='md' >LogOut</Button></Link>
                                 </>
                             }
                         </Nav>

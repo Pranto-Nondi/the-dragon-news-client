@@ -7,6 +7,7 @@ import { toast } from 'react-toastify';
 const Register = () => {
     const nameRef = useRef()
     const [password, setPassword] = useState(null)
+    const [strength, setStrength] = useState("");
     const [email, setEmail] = useState(null)
     const [show, setShow] = useState(false)
     const [passwordError, setPasswordError] = useState(null)
@@ -67,13 +68,35 @@ const Register = () => {
 
     }
     const handelPasswordField = (e) => {
+
         const password = e.target.value
         setPassword(password)
+
+
+        // if (password.length >= 8) {
+
+        //     setStrength(`Strong`)
+        // }
+        // else if (password.length >= 6) {
+        //     setStrength(`Moderate`)
+        // }
+        // else if (password.length == 0) {
+        //     setStrength(`Weak`)
+        // }
+        // else {
+        //     setStrength(`Weak`)
+
+
+        // }
         if (password.length < 6) {
             setPasswordError("Password must be at least 6 characters long");
+
+        }
+        else if (!/[a-z]/.test(password)) {
+            setPasswordError("Password must contain at least one LowerCase letter");
         }
         else if (!/[A-Z]+.*/.test(password)) {
-            setPasswordError("Password must contain at least one capital letter");
+            setPasswordError("Password must contain at least one UpperCase letter");
         }
         else if (!/.*\d+.*/.test(password)) {
             setPasswordError("Password must contain at least one Number");
@@ -81,10 +104,31 @@ const Register = () => {
         else if (!/.*\W+.*/.test(password)) {
             setPasswordError("Password must contain at least one Special Charecter");
         }
+
+
         else {
             setPasswordError("");
+
+
+        }
+        if (password.length >= 8) {
+
+            setStrength(`Strong`)
+        }
+        else if (password.length >= 6) {
+            setStrength(`Moderate`)
+        }
+        else if (password.length == 0) {
+            setStrength(`Weak`)
+        }
+        else {
+            setStrength(`Weak`)
+
+
         }
     }
+
+
     return (
         <>
             <Form onSubmit={handelRegister} className=' mb-10 w-75 h-50 mx-auto ' >
@@ -109,6 +153,14 @@ const Register = () => {
                 <Form.Group className="mb-3" controlId="formBasicPassword">
                     <Form.Label>Password</Form.Label>
                     <Form.Control onChange={handelPasswordField} type={show ? 'text' : 'password'} name='password' placeholder="Enter Your Password" required />
+                    {strength && <><span className={
+                        strength === "Weak"
+                            ? "text-danger"
+                            : strength === "Moderate"
+                                ? "text-warning"
+                                : "text-success"
+                    }> {strength}</span></>}
+                    <br />
                     {passwordError && <><span className='text-danger'> {passwordError}</span></>}
                 </Form.Group>
                 <Form.Label onClick={() => setShow(!show)} className='' >{
