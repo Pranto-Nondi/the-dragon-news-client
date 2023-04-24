@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react';
 import { Alert, Button, Form } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../Provider/AuthProvider';
 import { toast } from 'react-toastify';
 
@@ -11,6 +11,7 @@ const SignIn = () => {
     const [passwordError, setPasswordError] = useState(null)
     const [emailError, setEmailError] = useState(null)
     const [error, setError] = useState('')
+    const navigate = useNavigate()
     const { logInUser } = useContext(AuthContext)
     const handelSignIn = (e) => {
         e.preventDefault()
@@ -28,6 +29,7 @@ const SignIn = () => {
                 e.target.reset()
                 setError('')
                 toast.success("Login SuccessFul");
+                navigate('/')
             })
             .catch(error => {
                 console.log(error.message)
@@ -94,7 +96,7 @@ const SignIn = () => {
                     <p className='text-center mt-3' > Don't Have An Account ? <Link className='text-decoration-none' to='/register' >Register Now</Link></p>
                 </Form.Text>
                 <Form.Text className="text-muted  ">
-                    <p className='text-center mt-3 text-danger' > {error} </p>
+                    <p className='text-center mt-3 text-danger fs-5 ' > {error} </p>
                 </Form.Text>
             </Form >
         </>
