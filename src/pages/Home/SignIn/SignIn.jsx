@@ -1,6 +1,8 @@
-import React, { useState } from 'react';
-import { Button, Form } from 'react-bootstrap';
+import React, { useContext, useState } from 'react';
+import { Alert, Button, Form } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../../../Provider/AuthProvider';
+
 
 const SignIn = () => {
     const [password, setPassword] = useState(null)
@@ -8,14 +10,28 @@ const SignIn = () => {
     const [show, setShow] = useState(false)
     const [passwordError, setPasswordError] = useState(null)
     const [emailError, setEmailError] = useState(null)
+    const [error, setError] = useState('')
+    const { logInUser } = useContext(AuthContext)
     const handelSignIn = (e) => {
         e.preventDefault()
+        setError('')
         if (emailError) {
             e.target.email.focus();
         }
         else if (passwordError) {
             e.target.password.focus();
         }
+        logInUser(email, password)
+            .then(result => {
+                const loggedUser = result.user
+                console.log(loggedUser)
+                e.target.reset()
+                setError('')
+            })
+            .catch(error => {
+                console.log(error.message)
+                setError(error.message)
+            })
 
     }
     const handelEmailField = (e) => {
@@ -35,13 +51,13 @@ const SignIn = () => {
         if (password.length < 6) {
             setPasswordError("Password must be at least 6 characters long");
         }
-        if (!/[A-Z]+.*/.test(password)) {
+        else if (!/[A-Z]+.*/.test(password)) {
             setPasswordError("Password must contain at least one capital letter");
         }
-        if (!/.*\d+.*/.test(password)) {
+        else if (!/.*\d+.*/.test(password)) {
             setPasswordError("Password must contain at least one Number");
         }
-        if (!/.*\W+.*/.test(password)) {
+        else if (!/.*\W+.*/.test(password)) {
             setPasswordError("Password must contain at least one Special Charecter");
         }
         else {
@@ -50,16 +66,17 @@ const SignIn = () => {
     }
     return (
         <>
-            <Form onSubmit={handelSignIn} className='mt-5 w-75 ' >
+            <Form onSubmit={handelSignIn} className='mt-5  w-75 mx-auto ' >
+                <Alert.Heading className='text-center'> Login Your Account</Alert.Heading>
                 <Form.Group className="mb-3" controlId="formBasicEmail">
                     <Form.Label>Email address</Form.Label>
-                    <Form.Control onChange={handelEmailField} type="email" name='email' placeholder="Enter email" />
+                    <Form.Control onChange={handelEmailField} type="email" name='email' placeholder="Enter email" required />
                     {emailError && <><span className='text-danger'> {emailError}</span></>}
                 </Form.Group>
 
                 <Form.Group className="mb-3" controlId="formBasicPassword">
                     <Form.Label>Password</Form.Label>
-                    <Form.Control onChange={handelPasswordField} type={show?'text':'password'} name='password' placeholder="Password" />
+                    <Form.Control onChange={handelPasswordField} type={show ? 'text' : 'password'} name='password' placeholder="Password" required />
                     {passwordError && <><span className='text-danger'> {passwordError}</span></>}
                 </Form.Group>
 
@@ -74,6 +91,9 @@ const SignIn = () => {
                 <br />
                 <Form.Text className="text-muted  ">
                     <p className='text-center mt-3' > Don't Have An Account ? <Link className='text-decoration-none' to='/register' >Register Now</Link></p>
+                </Form.Text>
+                <Form.Text className="text-muted  ">
+                    <p className='text-center mt-3 text-danger' > {error} </p>
                 </Form.Text>
             </Form >
         </>
