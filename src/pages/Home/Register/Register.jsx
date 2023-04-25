@@ -6,6 +6,7 @@ import { toast } from 'react-toastify';
 
 const Register = () => {
     const nameRef = useRef()
+    const urlRef = useRef()
     const [password, setPassword] = useState(null)
     const [strength, setStrength] = useState("");
     const [email, setEmail] = useState(null)
@@ -28,7 +29,7 @@ const Register = () => {
             .then(result => {
                 const signUpUser = result.user
                 console.log(signUpUser)
-                setUpdateProfile(signUpUser, nameRef.current.value)
+                setUpdateProfile(signUpUser, nameRef.current.value,urlRef.current.value)
                     .then(() => {
                         console.log(`profile updated`)
                     })
@@ -145,7 +146,7 @@ const Register = () => {
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="formBasicEmail">
                     <Form.Label>Photo URL</Form.Label>
-                    <Form.Control type="text" name='url' placeholder="Photo Url" />
+                    <Form.Control ref={urlRef} type="text" name='url' placeholder="Photo Url" />
 
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="formBasicEmail">

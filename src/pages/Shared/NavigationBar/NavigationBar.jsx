@@ -54,11 +54,13 @@ const NavigationBar = () => {
 
                                 user && !loading && <>
                                     <p className='mt-1' ><span style={{ fontSize: '1.5rem' }}>{user.displayName}&nbsp;&nbsp; </span></p>
-                                    {user.photoURL && <div className='text-center'>
-                                        <img src={user.photoURL} alt="Logo" width="50" height="50" className="d-inline-block  rounded-5  "></img>
-                                    </div>}
-                                    &nbsp;&nbsp;
+                                    &nbsp;
                                     <Link to='/login' className='mt-1' ><Button onClick={handelLogOut} variant="dark" size='md' >LogOut</Button></Link>
+                                    &nbsp;&nbsp;
+                                    {user.photoURL && <div className='text-center'>
+                                        <Link to='/profile' ><img src={user.photoURL} alt="Logo" width="50" height="50" className="d-inline-block  rounded-5  "></img></Link>
+                                    </div>}
+
                                 </>
                             }
                         </Nav>
