@@ -1,14 +1,27 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Button, ListGroup } from 'react-bootstrap';
 import { FaGoogle, FaGithub, FaFacebook, FaTwitter, FaInstagram } from 'react-icons/fa';
 import Qzone from '../Qzone/Qzone';
+import { AuthContext } from '../../../Provider/AuthProvider';
+import { Link } from 'react-router-dom';
 
 const RightNav = () => {
+    const {  googleSignIn } = useContext(AuthContext)
+    const handelGoogleSign = () => {
+        googleSignIn()
+            .then(result => {
+                console.log(result.user)
+               
+            })
+            .catch(error => {
+
+            })
+    }
     return (
         <>
             <div className='mt-4'>
                 <h2>Login with</h2>
-                <Button className='mb-2' variant="outline-primary"><FaGoogle /> Login With Google</Button>
+                <Link onClick={handelGoogleSign} ><Button className='mb-2' variant="outline-primary"><FaGoogle /> Login With Google</Button></Link>
                 <br />
                 <Button variant="outline-secondary"><FaGithub /> Login With Github  </Button>
             </div>
