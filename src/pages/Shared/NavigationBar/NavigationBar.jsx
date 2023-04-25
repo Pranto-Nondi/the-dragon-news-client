@@ -27,8 +27,8 @@ const NavigationBar = () => {
                     <Navbar.Collapse id="responsive-navbar-nav">
                         <Nav className="mx-auto  gap-3 ">
                             <Link className='text-decoration-none text-dark' to="/categories/0">Home</Link>
-                            <Link className='text-decoration-none text-dark' >Career</Link>
-                            <Link className='text-decoration-none text-dark' >About</Link>
+                            <Link to='/career' className='text-decoration-none text-dark' >Career</Link>
+                            <Link to='/about' className='text-decoration-none text-dark' >About</Link>
                         </Nav>
                         <Nav>
 

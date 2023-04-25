@@ -6,8 +6,10 @@ import DetailsCard from "../pages/Home/DetailsCard/DetailsCard";
 import DetailsNews from "../layout/DetailsNews";
 import Login from "../layout/Login";
 import SignIn from "../pages/Home/SignIn/SignIn";
-
 import Register from "../pages/Home/Register/Register";
+import Career from "../pages/Home/Career/Career";
+import About from "../pages/Home/About/About";
+import PrivateRoute from "./PrivateRoute/PrivateRoute";
 
 
 const router = createBrowserRouter([
@@ -58,9 +60,33 @@ const router = createBrowserRouter([
             {
                 path: '/register',
                 element: <Register />
+            },
+
+        ]
+    },
+    {
+        path: 'career',
+        element: <Login />,
+        children: [
+            {
+                path: '/career',
+                element: <PrivateRoute><Career /></PrivateRoute>
             }
+
+        ]
+    },
+    {
+        path: 'about',
+        element: <Login />,
+        children: [
+            {
+                path: '/about',
+                element: <About />,
+            }
+
         ]
     }
+
 ])
 
 export default router
