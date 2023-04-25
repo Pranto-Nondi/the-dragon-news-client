@@ -14,7 +14,7 @@ const SignIn = () => {
     const navigate = useNavigate()
     const location = useLocation()
     const from = location.state?.from?.pathname || "/";
-    const { logInUser } = useContext(AuthContext)
+    const { logInUser, setLoading } = useContext(AuthContext)
     const handelSignIn = (e) => {
         e.preventDefault()
         setError('')
@@ -28,14 +28,26 @@ const SignIn = () => {
             .then(result => {
                 const loggedUser = result.user
                 console.log(loggedUser)
-                e.target.reset()
-                setError('')
-                toast.success("Login SuccessFul");
-                navigate(from, { replace: true })
+                if (loggedUser.emailVerified) {
+                    toast.success("Login SuccessFul");
+                    navigate(from, { replace: true })
+                    e.target.reset()
+                    setError('')
+
+                }
+                else {
+                    toast.error(" Email Verification failed...PLease first verify and Try again later");
+                    setError('')
+                }
+
+
             })
             .catch(error => {
                 console.log(error.message)
                 setError(error.message)
+            })
+            .finally(() => {
+                setLoading(false)
             })
 
     }

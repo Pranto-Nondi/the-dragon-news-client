@@ -14,7 +14,7 @@ const Register = () => {
     const [emailError, setEmailError] = useState(null)
     const [error, setError] = useState('')
     const navigate = useNavigate()
-    const { createUser, loggedOut, setUpdateProfile } = useContext(AuthContext)
+    const { user,createUser, loggedOut, setUpdateProfile,emailVerification } = useContext(AuthContext)
     const handelRegister = (e) => {
         e.preventDefault()
         setError('')
@@ -35,11 +35,16 @@ const Register = () => {
                     .catch(error => {
                         setError(error.message)
                     })
+                    emailVerification(signUpUser)
+                    .then(()=>{
+                        toast.info(`Email Verification sent.Please Confirm Verification`)
+                    })
+
                 loggedOut()
                     .then(() => {
                         console.log(`logout sucessFull`)
                         navigate(`/login`)
-                        toast.success(`Sign Up sucessFull `)
+                        // toast.success(`Sign Up sucessFull `)
                     })
                     .catch(error => {
                         setError(error.message)
