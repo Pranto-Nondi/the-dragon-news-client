@@ -22,10 +22,11 @@ const AuthProvider = ({ children }) => {
         setLoading(true)
         return signOut(auth)
     }
-    const setUpdateProfile = (user, name) => {
+    const setUpdateProfile = (user, name,url) => {
         setLoading(true)
         return updateProfile(user, {
-            displayName: name
+            displayName: name,
+            photoURL: url
 
         })
     }

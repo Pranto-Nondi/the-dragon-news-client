@@ -173,7 +173,7 @@ const Register = () => {
                 }</Form.Label>
                 <Form.Group className="mb-3" controlId="formBasicCheckbox">
 
-                    <Form.Check type="checkbox" label="Accept Term & Conditions" />
+                    <Form.Check type="checkbox" label="Accept Term & Conditions" required />
                 </Form.Group>
                 <Button className='w-100' size="lg" variant="primary" type="submit">
                     Register

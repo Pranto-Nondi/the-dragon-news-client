@@ -10,6 +10,7 @@ import Register from "../pages/Home/Register/Register";
 import Career from "../pages/Home/Career/Career";
 import About from "../pages/Home/About/About";
 import PrivateRoute from "./PrivateRoute/PrivateRoute";
+import Profile from "../pages/Home/Profile/Profile";
 
 
 const router = createBrowserRouter([
@@ -81,8 +82,21 @@ const router = createBrowserRouter([
         children: [
             {
                 path: '/about',
-                element: <About />,
+                element: <PrivateRoute><About /></PrivateRoute>,
             }
+
+
+        ]
+    },
+    {
+        path: 'profile',
+        element: <Login />,
+        children: [
+            {
+                path: '/profile',
+                element: <PrivateRoute><Profile /></PrivateRoute>
+            }
+
 
         ]
     }

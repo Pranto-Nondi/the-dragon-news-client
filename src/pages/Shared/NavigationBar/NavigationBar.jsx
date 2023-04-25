@@ -35,8 +35,10 @@ const NavigationBar = () => {
 
                             {
                                 !user && !loading && <>
-                                    <FaUserCircle style={{ fontSize: '2rem' }} ></FaUserCircle>
-                                    <Link className='text-decoration-none' to="/login" >&nbsp;&nbsp;<Button variant="dark" size='md' >LogIn</Button></Link>
+
+                                    <Link className='text-decoration-none' to="/login" >&nbsp;&nbsp;<Button variant="dark" size='md' >LogIn </Button></Link>
+                                    &nbsp;  &nbsp;
+                                    <Link className='text-dark' to='/profile' ><FaUserCircle style={{ fontSize: '2rem' }} ></FaUserCircle></Link>
                                 </>
                             }
 

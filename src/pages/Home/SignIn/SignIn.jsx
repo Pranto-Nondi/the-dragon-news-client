@@ -33,6 +33,7 @@ const SignIn = () => {
                     navigate(from, { replace: true })
                     e.target.reset()
                     setError('')
+                    setLoading(false)
 
                 }
                 else {
