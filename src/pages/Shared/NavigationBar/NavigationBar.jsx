@@ -60,6 +60,9 @@ const NavigationBar = () => {
                                     {user.photoURL && <div className='text-center'>
                                         <Link to='/profile' ><img src={user.photoURL} alt="Logo" width="50" height="50" className="d-inline-block  rounded-5  "></img></Link>
                                     </div>}
+                                    {user.photoURL == null && <div className='text-center'>
+                                        <Link className='text-dark ' to='/profile' ><FaUserCircle style={{ fontSize: '2rem' }} className='mt-2' ></FaUserCircle></Link>
+                                    </div>}
 
                                 </>
                             }
