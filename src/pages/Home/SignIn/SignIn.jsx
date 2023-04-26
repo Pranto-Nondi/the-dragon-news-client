@@ -2,7 +2,7 @@ import React, { useContext, useState } from 'react';
 import { Alert, Button, Form } from 'react-bootstrap';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../Provider/AuthProvider';
-import { toast } from 'react-toastify';
+import { toast } from 'react-hot-toast';
 
 const SignIn = () => {
     const [password, setPassword] = useState(null)
@@ -29,10 +29,13 @@ const SignIn = () => {
                 const loggedUser = result.user
                 console.log(loggedUser)
                 if (loggedUser.emailVerified) {
+                    toast.success('Login Successful');
+                 
                     navigate(from, { replace: true })
                     e.target.reset()
                     setError('')
                     setLoading(false)
+
 
                 }
                 else {
@@ -48,7 +51,7 @@ const SignIn = () => {
             })
             .finally(() => {
                 setLoading(false)
-                toast.success("Login SuccessFul");
+
             })
 
     }

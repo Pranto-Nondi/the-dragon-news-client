@@ -3,9 +3,10 @@ import { Button, Container, Nav, Navbar, Spinner } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { FaUserCircle } from 'react-icons/fa';
 import { AuthContext } from '../../../Provider/AuthProvider';
-import { toast } from 'react-toastify';
+import { toast } from 'react-hot-toast';
+
 const NavigationBar = () => {
-    const { user, loggedOut, loading, setLoading } = useContext(AuthContext) || {}
+    const { user, loggedOut, loading } = useContext(AuthContext) || {}
     console.log(loading)
     console.log(user)
     const handelLogOut = () => {

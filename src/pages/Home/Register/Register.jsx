@@ -2,7 +2,8 @@ import React, { useContext, useRef, useState } from 'react';
 import { Alert, Button, Form } from 'react-bootstrap';
 import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../Provider/AuthProvider';
-import { toast } from 'react-toastify';
+import { toast } from 'react-hot-toast';
+
 
 const Register = () => {
     const nameRef = useRef()

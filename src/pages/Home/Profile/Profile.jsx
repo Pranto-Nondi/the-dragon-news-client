@@ -4,9 +4,9 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import { AuthContext } from '../../../Provider/AuthProvider';
 import { useRef } from 'react';
-import { toast } from 'react-toastify';
 import { useState } from 'react';
 import {  useNavigate } from 'react-router-dom';
+import { toast } from 'react-hot-toast';
 
 const Profile = () => {
     const { user, setUpdateProfile, loggedOut, logInUser, loading, setLoading } = useContext(AuthContext)
@@ -23,6 +23,7 @@ const Profile = () => {
         setUpdateProfile(user, nameRef.current.value, photoUrlRef.current.value)
             .then(() => {
                 navigate('/')
+                toast.success(`Successfully profile updated`)
               
             })
             .catch(error => {
@@ -30,7 +31,7 @@ const Profile = () => {
             })
             .finally(() => {
                 setLoading(false)
-                toast.success(`Successfully profile updated`)
+                
             })
     }
 
