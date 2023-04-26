@@ -23,7 +23,7 @@ const Profile = () => {
         setUpdateProfile(user, nameRef.current.value, photoUrlRef.current.value)
             .then(() => {
                 navigate('/')
-                toast.success(`Successfully profile updated`)
+              
             })
             .catch(error => {
                 setError(error.message)
@@ -60,10 +60,10 @@ const Profile = () => {
                 </Form.Text>
             </Form.Group>
 
-            <Form.Group className="mb-3" controlId="formBasicPassword">
+            {/* <Form.Group className="mb-3" controlId="formBasicPassword">
                 <Form.Label>Password</Form.Label>
                 <Form.Control ref={passwordRef} type="password" name='password' placeholder="Current Password" required />
-            </Form.Group>
+            </Form.Group> */}
             <Form.Group className="mb-3" controlId="formBasicCheckbox">
                 <Form.Check type="checkbox" label="Accept Term & Conditions" required />
             </Form.Group>
