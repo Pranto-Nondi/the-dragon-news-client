@@ -6,38 +6,48 @@ import { AuthContext } from '../../../Provider/AuthProvider';
 import { useRef } from 'react';
 import { toast } from 'react-toastify';
 import { useState } from 'react';
+import {  useNavigate } from 'react-router-dom';
 
 const Profile = () => {
-    const { user, setUpdateProfile } = useContext(AuthContext)
+    const { user, setUpdateProfile, loggedOut, logInUser, loading, setLoading } = useContext(AuthContext)
     const [error, setError] = useState('')
     const nameRef = useRef(user.displayName)
-    const photoUrlRef = useRef(user.photoURL)
+    const emailRef = useRef(user.email)
+    const passwordRef = useRef('')
+    const photoUrlRef = useRef(user.photoURL|| '')
+    const navigate = useNavigate()
     const handelUpdateProfile = (e) => {
         e.preventDefault()
-        console.log(nameRef.current.value, photoUrlRef.current.value)
-        setUpdateProfile(nameRef.current.value, photoUrlRef.current.value)
+        setError('')
+        console.log(emailRef.current.value, passwordRef.current.value,photoUrlRef.current.value,nameRef.current.value)
+        setUpdateProfile(user, nameRef.current.value, photoUrlRef.current.value)
             .then(() => {
-                toast.success(`Profile Updated`)
+                navigate('/')
+                toast.success(`Successfully profile updated`)
             })
-            .catch((error) => {
+            .catch(error => {
                 setError(error.message)
             })
-
+            .finally(() => {
+                setLoading(false)
+                toast.success(`Successfully profile updated`)
+            })
     }
-  
+
+
     return (
         <Form onSubmit={handelUpdateProfile} className='w-75'>
             <Alert.Heading className='text-center mt-4 '> Update Your Profile</Alert.Heading>
             <Form.Group className="mb-3 " controlId="formBasicEmail">
                 <Form.Label>Email address</Form.Label>
-                <Form.Control readOnly defaultValue={user.email} type="email" name='email' placeholder="Your Email" />
+                <Form.Control ref={emailRef} readOnly defaultValue={user.email} type="email" name='email' placeholder="Your Email" />
                 <Form.Text className="text-muted">
 
                 </Form.Text>
             </Form.Group>
             <Form.Group className="mb-3 " controlId="formBasicEmail">
                 <Form.Label>Your Name</Form.Label>
-                <Form.Control ref={nameRef} defaultValue={user.displayName} type="text" name='name' placeholder="Your Name" />
+                <Form.Control ref={nameRef} defaultValue={user.displayName} type="text" name='name' placeholder="Your Name" required />
                 <Form.Text className="text-muted">
 
                 </Form.Text>
@@ -50,10 +60,10 @@ const Profile = () => {
                 </Form.Text>
             </Form.Group>
 
-            {/* <Form.Group className="mb-3" controlId="formBasicPassword">
+            <Form.Group className="mb-3" controlId="formBasicPassword">
                 <Form.Label>Password</Form.Label>
-                <Form.Control type="password" name='password' placeholder="Current Password" />
-            </Form.Group> */}
+                <Form.Control ref={passwordRef} type="password" name='password' placeholder="Current Password" required />
+            </Form.Group>
             <Form.Group className="mb-3" controlId="formBasicCheckbox">
                 <Form.Check type="checkbox" label="Accept Term & Conditions" required />
             </Form.Group>

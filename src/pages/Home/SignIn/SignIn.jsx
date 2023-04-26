@@ -29,11 +29,12 @@ const SignIn = () => {
                 const loggedUser = result.user
                 console.log(loggedUser)
                 if (loggedUser.emailVerified) {
-                    toast.success("Login SuccessFul");
+                   
                     navigate(from, { replace: true })
                     e.target.reset()
                     setError('')
                     setLoading(false)
+                    toast.success("Login SuccessFul");
 
                 }
                 else {
