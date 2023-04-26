@@ -43,9 +43,6 @@ const AuthProvider = ({ children }) => {
                 console.log(currentUser)
             }
 
-
-
-
         })
         return () => {
             unsubscribe()

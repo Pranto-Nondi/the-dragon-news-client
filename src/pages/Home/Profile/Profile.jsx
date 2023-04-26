@@ -4,15 +4,27 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import { AuthContext } from '../../../Provider/AuthProvider';
 import { useRef } from 'react';
+import { toast } from 'react-toastify';
+import { useState } from 'react';
+
 const Profile = () => {
-    const { user } = useContext(AuthContext)
+    const { user, setUpdateProfile } = useContext(AuthContext)
+    const [error, setError] = useState('')
     const nameRef = useRef(user.displayName)
     const photoUrlRef = useRef(user.photoURL)
     const handelUpdateProfile = (e) => {
         e.preventDefault()
-        console.log(nameRef.current.value)
+        console.log(nameRef.current.value, photoUrlRef.current.value)
+        setUpdateProfile(nameRef.current.value, photoUrlRef.current.value)
+            .then(() => {
+                toast.success(`Profile Updated`)
+            })
+            .catch((error) => {
+                setError(error.message)
+            })
 
     }
+  
     return (
         <Form onSubmit={handelUpdateProfile} className='w-75'>
             <Alert.Heading className='text-center mt-4 '> Update Your Profile</Alert.Heading>
@@ -48,6 +60,10 @@ const Profile = () => {
             <Button variant="primary" type="submit">
                 Update
             </Button>
+            <Form.Text className="text-muted">
+                <p className='text-center mt-3 text-danger mb-5' > {error} </p>
+            </Form.Text>
+
         </Form>
     );
 };
