@@ -2,7 +2,8 @@ import React, { useContext, useRef, useState } from 'react';
 import { Alert, Button, Form } from 'react-bootstrap';
 import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../Provider/AuthProvider';
-import { toast } from 'react-hot-toast';
+import {  toast } from 'react-hot-toast';
+
 
 
 const Register = () => {
@@ -32,21 +33,22 @@ const Register = () => {
                 console.log(signUpUser)
                 setUpdateProfile(signUpUser, nameRef.current.value,urlRef.current.value)
                     .then(() => {
-                        console.log(`profile updated`)
+                        // console.log(`profile updated`)
                     })
                     .catch(error => {
                         setError(error.message)
                     })
                     emailVerification(signUpUser)
                     .then(()=>{
-                        toast.info(`Email Verification sent.Please Confirm Verification`)
+                        toast.success(`Email Verification sent.Please Confirm Verification`)
+                       
                     })
 
                 loggedOut()
                     .then(() => {
-                        console.log(`logout sucessFull`)
+                        // console.log(`logout sucessFull`)
                         navigate(`/login`)
-                        // toast.success(`Sign Up sucessFull `)
+                       
                     })
                     .catch(error => {
                         setError(error.message)
