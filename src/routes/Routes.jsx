@@ -32,7 +32,7 @@ const router = createBrowserRouter([
     },
     {
         path: 'news',
-        element: <DetailsNews />,
+        element: <PrivateRoute><DetailsNews /></PrivateRoute>,
         children: [
             {
                 path: ':id',

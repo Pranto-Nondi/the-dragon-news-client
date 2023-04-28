@@ -3,7 +3,6 @@ import { Alert, Button, Form } from 'react-bootstrap';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../Provider/AuthProvider';
 import { toast } from 'react-hot-toast';
-
 const SignIn = () => {
     const [password, setPassword] = useState(null)
     const [email, setEmail] = useState(null)
@@ -13,7 +12,7 @@ const SignIn = () => {
     const [error, setError] = useState('')
     const navigate = useNavigate()
     const location = useLocation()
-    const from = location.state?.from?.pathname || "/";
+    const from = location.state?.from?.pathname || "/categories/0";
     const { logInUser, setLoading } = useContext(AuthContext)
     const handelSignIn = (e) => {
         e.preventDefault()

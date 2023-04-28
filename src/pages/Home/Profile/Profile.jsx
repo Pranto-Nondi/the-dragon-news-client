@@ -26,8 +26,8 @@ const Profile = () => {
         setUpdateProfile(user, nameRef.current.value, photoUrlRef.current.value)
             .then(() => {
                 // navigate('/')
-                <Navigate to='/'></Navigate>
-                console.log( <Navigate to='/'></Navigate>)
+                <Navigate to='/categories/0'></Navigate>
+                // console.log( <Navigate to='/categories/0'></Navigate>)
                
                 toast.success(`Successfully profile updated`)
 
