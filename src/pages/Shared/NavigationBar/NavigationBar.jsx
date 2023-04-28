@@ -33,7 +33,6 @@ const NavigationBar = () => {
                         </Nav>
                         <Nav>
 
-
                             {
                                 !user && !loading && <>
 

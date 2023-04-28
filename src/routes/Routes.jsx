@@ -11,8 +11,6 @@ import Career from "../pages/Home/Career/Career";
 import About from "../pages/Home/About/About";
 import PrivateRoute from "./PrivateRoute/PrivateRoute";
 import Profile from "../pages/Home/Profile/Profile";
-
-
 const router = createBrowserRouter([
     {
         path: '/',

@@ -5,7 +5,7 @@ import Form from 'react-bootstrap/Form';
 import { AuthContext } from '../../../Provider/AuthProvider';
 import { useRef } from 'react';
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Navigate, useLocation, useNavigate } from 'react-router-dom';
 import { toast } from 'react-hot-toast';
 
 const Profile = () => {
@@ -16,15 +16,21 @@ const Profile = () => {
     const passwordRef = useRef('')
     const photoUrlRef = useRef(user.photoURL || '')
     const navigate = useNavigate()
+    const location = useLocation()
+  
+    console.log(location,navigate)
     const handelUpdateProfile = (e) => {
         e.preventDefault()
         setError('')
         console.log(emailRef.current.value, passwordRef.current.value, photoUrlRef.current.value, nameRef.current.value)
         setUpdateProfile(user, nameRef.current.value, photoUrlRef.current.value)
             .then(() => {
-                navigate('/')
-                toast.success(`Successfully profile updated`)
+                // navigate('/')
+                <Navigate to='/'></Navigate>
+                console.log( <Navigate to='/'></Navigate>)
                
+                toast.success(`Successfully profile updated`)
+
             })
             .catch(error => {
                 setError(error.message)
