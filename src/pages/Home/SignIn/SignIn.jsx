@@ -34,13 +34,11 @@ const SignIn = () => {
                     setError('')
                     setLoading(false)
 
-
                 }
                 else {
                     toast.error(" Email Verification failed...PLease first verify and Try again later");
                     setError('')
                 }
-
 
             })
             .catch(error => {
@@ -77,7 +75,7 @@ const SignIn = () => {
             setPasswordError("Password must contain at least one Number");
         }
         else if (!/.*\W+.*/.test(password)) {
-            setPasswordError("Password must contain at least one Special Charecter");
+            setPasswordError("Password must contain at least one Special Character");
         }
         else {
             setPasswordError("");

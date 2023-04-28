@@ -25,11 +25,11 @@ const Profile = () => {
         console.log(emailRef.current.value, passwordRef.current.value, photoUrlRef.current.value, nameRef.current.value)
         setUpdateProfile(user, nameRef.current.value, photoUrlRef.current.value)
             .then(() => {
-                // navigate('/')
-                <Navigate to='/categories/0'></Navigate>
-                // console.log( <Navigate to='/categories/0'></Navigate>)
+                navigate('/categories/0')
+                // <Navigate to='/categories/0' ></Navigate>
+                console.log( <Navigate to='/categories/0'></Navigate>)
                
-                toast.success(`Successfully profile updated`)
+                // toast.success(`Successfully profile updated`)
 
             })
             .catch(error => {

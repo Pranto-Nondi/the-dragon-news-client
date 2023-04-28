@@ -1,6 +1,6 @@
 import React, { useContext, useRef, useState } from 'react';
 import { Alert, Button, Form } from 'react-bootstrap';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, Navigate, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../Provider/AuthProvider';
 import {  toast } from 'react-hot-toast';
 
@@ -46,8 +46,9 @@ const Register = () => {
 
                 loggedOut()
                     .then(() => {
-                        // console.log(`logout sucessFull`)
+                      
                         navigate(`/login`)
+                        
                        
                     })
                     .catch(error => {
@@ -111,7 +112,7 @@ const Register = () => {
             setPasswordError("Password must contain at least one Number");
         }
         else if (!/.*\W+.*/.test(password)) {
-            setPasswordError("Password must contain at least one Special Charecter");
+            setPasswordError("Password must contain at least one Special Character");
         }
 
 
@@ -184,7 +185,7 @@ const Register = () => {
                 </Button>
                 <br />
                 <Form.Text className="text-muted  ">
-                    <p className='text-center mt-3' > Already Have an Acount ? <Link className='text-decoration-none mb-5 ' to='/login' >Login Now</Link></p>
+                    <p className='text-center mt-3' > Already Have an Account ? <Link className='text-decoration-none mb-5 ' to='/login' >Login Now</Link></p>
                 </Form.Text>
                 <Form.Text className="text-muted  ">
                     <p className='text-center mt-3 text-danger mb-5' > {error} </p>

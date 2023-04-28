@@ -16,13 +16,14 @@ const AuthProvider = ({ children }) => {
         return signInWithEmailAndPassword(auth, email, password)
     }
     const googleSignIn = () => {
+        setLoading(true)
         return signInWithPopup(auth, googleProvider)
     }
     const loggedOut = () => {
         setLoading(true)
         return signOut(auth)
     }
-    const setUpdateProfile = (user, name,url) => {
+    const setUpdateProfile = (user, name, url) => {
         setLoading(true)
         return updateProfile(user, {
             displayName: name,
@@ -31,6 +32,7 @@ const AuthProvider = ({ children }) => {
         })
     }
     const emailVerification = (user) => {
+        setLoading(true)
         return sendEmailVerification(user)
     }
     const authInfo = { user, createUser, logInUser, loggedOut, loading, setLoading, setUpdateProfile, googleSignIn, emailVerification }
