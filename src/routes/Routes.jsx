@@ -11,6 +11,7 @@ import Career from "../pages/Home/Career/Career";
 import About from "../pages/Home/About/About";
 import PrivateRoute from "./PrivateRoute/PrivateRoute";
 import Profile from "../pages/Home/Profile/Profile";
+import Terms from "../pages/Home/Terms/Terms";
 const router = createBrowserRouter([
     {
         path: '/',
@@ -43,61 +44,82 @@ const router = createBrowserRouter([
         ]
     },
     {
-        path: 'login',
+        path: '/',
         element: <Login />,
         children: [
             {
                 path: '/login',
                 element: <SignIn />
-            }
-        ]
-    },
-    {
-        path: 'register',
-        element: <Login />,
-        children: [
-            {
+            }, {
                 path: '/register',
                 element: <Register />
             },
-
-        ]
-    },
-    {
-        path: 'career',
-        element: <Login />,
-        children: [
             {
                 path: '/career',
                 element: <PrivateRoute><Career /></PrivateRoute>
-            }
-
-        ]
-    },
-    {
-        path: 'about',
-        element: <Login />,
-        children: [
+            },
             {
                 path: '/about',
                 element: <PrivateRoute><About /></PrivateRoute>,
+            },
+            {
+                path: '/profile',
+                element: <PrivateRoute><Profile /></PrivateRoute>
+            },
+            {
+                path: '/terms',
+                element: <Terms />
             }
 
 
         ]
     },
-    {
-        path: 'profile',
-        element: <Login />,
-        children: [
-            {
-                path: '/profile',
-                element: <PrivateRoute><Profile /></PrivateRoute>
-            }
+    // {
+    //     path: 'register',
+    //     element: <Login />,
+    //     children: [
+    //         {
+    //             path: '/register',
+    //             element: <Register />
+    //         },
+
+    //     ]
+    // },
+    // {
+    //     path: 'career',
+    //     element: <Login />,
+    //     children: [
+    //         {
+    //             path: '/career',
+    //             element: <PrivateRoute><Career /></PrivateRoute>
+    //         }
+
+    //     ]
+    // },
+    // {
+    //     path: 'about',
+    //     element: <Login />,
+    //     children: [
+    //         {
+    //             path: '/about',
+    //             element: <PrivateRoute><About /></PrivateRoute>,
+    //         }
 
 
-        ]
-    }
+    //     ]
+    // },
+    // {
+    //     path: 'profile',
+    //     element: <Login />,
+    //     children: [
+    //         {
+    //             path: '/profile',
+    //             element: <PrivateRoute><Profile /></PrivateRoute>
+    //         }
+
+
+    //     ]
+    // }
 
 ])
 

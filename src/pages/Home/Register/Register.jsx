@@ -2,9 +2,7 @@ import React, { useContext, useRef, useState } from 'react';
 import { Alert, Button, Form } from 'react-bootstrap';
 import { Link, Navigate, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../Provider/AuthProvider';
-import {  toast } from 'react-hot-toast';
-
-
+import { toast } from 'react-hot-toast';
 
 const Register = () => {
     const nameRef = useRef()
@@ -15,9 +13,10 @@ const Register = () => {
     const [show, setShow] = useState(false)
     const [passwordError, setPasswordError] = useState(null)
     const [emailError, setEmailError] = useState(null)
+    const [accepted, setAccepted] = useState(false)
     const [error, setError] = useState('')
     const navigate = useNavigate()
-    const { user,createUser, loggedOut, setUpdateProfile,emailVerification } = useContext(AuthContext)
+    const { user, createUser, loggedOut, setUpdateProfile, emailVerification } = useContext(AuthContext)
     const handelRegister = (e) => {
         e.preventDefault()
         setError('')
@@ -31,25 +30,25 @@ const Register = () => {
             .then(result => {
                 const signUpUser = result.user
                 console.log(signUpUser)
-                setUpdateProfile(signUpUser, nameRef.current.value,urlRef.current.value)
+                setUpdateProfile(signUpUser, nameRef.current.value, urlRef.current.value)
                     .then(() => {
                         // console.log(`profile updated`)
                     })
                     .catch(error => {
                         setError(error.message)
                     })
-                    emailVerification(signUpUser)
-                    .then(()=>{
+                emailVerification(signUpUser)
+                    .then(() => {
                         toast.success(`Email Verification sent.Please Confirm Verification`)
-                       
+
                     })
 
                 loggedOut()
                     .then(() => {
-                      
+
                         navigate(`/login`)
-                        
-                       
+
+
                     })
                     .catch(error => {
                         setError(error.message)
@@ -139,6 +138,13 @@ const Register = () => {
     }
 
 
+    const handelAccept = (e) => {
+        console.log(e.target.checked)
+        setAccepted(e.target.checked)
+    }
+
+
+
     return (
         <>
             <Form onSubmit={handelRegister} className=' mb-10 w-75 h-50 mx-auto ' >
@@ -178,9 +184,9 @@ const Register = () => {
                 }</Form.Label>
                 <Form.Group className="mb-3" controlId="formBasicCheckbox">
 
-                    <Form.Check type="checkbox" label="Accept Term & Conditions" required />
+                    <Form.Check onClick={handelAccept} type="checkbox" label={<><Link className='text-decoration-none text-dark' to='/terms' >Accept Term & Conditions</Link></>} required />
                 </Form.Group>
-                <Button className='w-100' size="lg" variant="primary" type="submit">
+                <Button className='w-100' size="lg" variant="primary" type="submit" disabled={!accepted} >
                     Register
                 </Button>
                 <br />
@@ -193,6 +199,7 @@ const Register = () => {
             </Form>
         </>
     );
-};
+}
+
 
 export default Register;
