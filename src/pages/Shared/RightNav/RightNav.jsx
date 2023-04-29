@@ -6,16 +6,26 @@ import { AuthContext } from '../../../Provider/AuthProvider';
 import { Link } from 'react-router-dom';
 
 const RightNav = () => {
-    const {  googleSignIn } = useContext(AuthContext)
+    const { googleSignIn, githubSignIn } = useContext(AuthContext)
     const handelGoogleSign = () => {
         googleSignIn()
             .then(result => {
                 console.log(result.user)
-               
-            })
-            .catch(error => {
 
             })
+            .catch(error => {
+                console.log(error.message)
+            })
+    }
+    const handelGithubSign = () => {
+        // githubSignIn()
+        //     .then(result => {
+        //         console.log(result.user)
+
+        //     })
+        //     .catch(error => {
+        //         console.log(error.message)
+        //     })
     }
     return (
         <>
@@ -23,7 +33,7 @@ const RightNav = () => {
                 <h2>Login with</h2>
                 <Link onClick={handelGoogleSign} ><Button className='mb-2' variant="outline-primary"><FaGoogle /> Login With Google</Button></Link>
                 <br />
-                <Button variant="outline-secondary"><FaGithub /> Login With Github  </Button>
+                <Button onClick={handelGithubSign} variant="outline-secondary"><FaGithub /> Login With Github  </Button>
             </div>
             <div className='mt-4'>
                 <h3>Find Us On</h3>

@@ -5,9 +5,9 @@ import NewsCards from '../NewsCards/NewsCards';
 
 const Category = () => {
     const { id } = useParams()
-    console.log(id)
+    // console.log(id)
     const categories = useLoaderData()
-    console.log(categories)
+    // console.log(categories)
     return (
         <>
             <h3 className='mt-4'>Dragon News Home</h3>
