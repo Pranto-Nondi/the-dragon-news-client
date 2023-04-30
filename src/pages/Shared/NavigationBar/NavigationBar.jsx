@@ -1,12 +1,16 @@
 import React, { useContext } from 'react';
 import { Button, Container, Nav, Navbar, Spinner } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import { Link, NavLink, useLocation } from 'react-router-dom';
 import { FaUserCircle } from 'react-icons/fa';
 import { AuthContext } from '../../../Provider/AuthProvider';
 import { toast } from 'react-hot-toast';
 
+
 const NavigationBar = () => {
     const { user, loggedOut, loading } = useContext(AuthContext) || {}
+
+    const activeStyle = { color: 'blue' };
+    const location = useLocation()
     console.log(loading)
     console.log(user)
     const handelLogOut = () => {
@@ -27,10 +31,18 @@ const NavigationBar = () => {
                     <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                     <Navbar.Collapse id="responsive-navbar-nav">
                         <Nav className="mx-auto  gap-3 ">
-                            <Link className='text-decoration-none text-dark' to="/categories/0">Home</Link>
-                            <Link to='/career' className='text-decoration-none text-dark' >Career</Link>
-                            <Link to='/about' className='text-decoration-none text-dark' >About</Link>
+
+                            <Link to="/" className={`nav-link fs-5 ${location.pathname === '/' ? 'active' : ''}`} style={{ color: location.pathname === '/' ? 'blue' : 'black' }}>
+                                Home
+                            </Link>
+                            <Link to="/career" className={`nav-link fs-5  ${location.pathname === '/career' ? 'active' : ''}`} style={{ color: location.pathname === '/career' ? 'blue' : 'black' }}>
+                                Career
+                            </Link>
+                            <Link to="/about" className={`nav-link fs-5  ${location.pathname === '/about' ? 'active' : ''}`} style={{ color: location.pathname === '/about' ? 'blue' : 'black' }}>
+                                About
+                            </Link>
                         </Nav>
+
                         <Nav>
 
                             {
