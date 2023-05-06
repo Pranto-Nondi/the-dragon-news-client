@@ -13,6 +13,7 @@ const SignIn = () => {
     const navigate = useNavigate()
     const location = useLocation()
     const from = location.state?.from?.pathname || "/categories/0";
+    console.log(from)
     const { logInUser, setLoading } = useContext(AuthContext)
     const handelSignIn = (e) => {
         e.preventDefault()
